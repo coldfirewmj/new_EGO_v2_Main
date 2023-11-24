@@ -19,7 +19,7 @@
     <arg name="fx" default="390.7388610839844" />
     <arg name="fy" default="390.7388610839844" />
 
-  <include file="$(find ego_planner)/launch/advanced_param_swarm_exp.xml">
+  <include file="$(find ego_planner)/launch/include/advanced_param_swarm_exp.xml">
 
     <arg name="drone_id" value="$(arg drone_id)"/>
 
@@ -58,14 +58,14 @@
     <!-- 2: use global waypoints below  -->
     <!-- 4: use REMOTE_TARGET  -->
 
-    <arg name="flight_type" value="4" />
+    <arg name="flight_type" value="2" />
     
     <!-- global waypoints -->
     <!-- It generates a piecewise min-snap traj passing all waypoints -->
-    <arg name="point_num" value="3" />
+    <arg name="point_num" value="1" />
 
-    <arg name="point0_x" value="11.0" />
-    <arg name="point0_y" value="-2.0" />
+    <arg name="point0_x" value="10.0" />
+    <arg name="point0_y" value="0.0" />
     <arg name="point0_z" value="1.0" />
 
     <arg name="point1_x" value="11.0" />
@@ -90,7 +90,7 @@
     <!-- trajectory server -->
     <node pkg="ego_planner" name="drone_$(arg drone_id)_traj_server" type="traj_server" output="screen">
         <remap from="position_cmd" to="drone_$(arg drone_id)_planning/pos_cmd"/>
-        <remap from="~planning/bspline" to="drone_$(arg drone_id)_planning/bspline"/>
+        <remap from="~planning/trajectory" to="drone_$(arg drone_id)_planning/trajectory"/>
 
         <param name="traj_server/time_forward" value="1.0" type="double"/>
     </node>
